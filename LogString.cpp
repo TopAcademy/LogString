@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <stdexcept>
+#include "LogString.h"
 
 using std::string;
 using std::cout;
@@ -12,16 +13,8 @@ using std::endl;
 
 int main()
 {
-    string s = "My string";
-    int i = 0;
-    while (true) {
-        try { cout << s.at(i); }
-        catch (std::out_of_range const& e) {
-            cout << endl << e.what() << endl;
-            break;
-        }
-        i++;
-    }
-
-    
+	LogString s1("Illegal user", QUESTION);
+	s1 += "!!!";
+	cout << s1 << endl;
 }
+
