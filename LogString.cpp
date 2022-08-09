@@ -13,8 +13,8 @@ using std::endl;
 
 int main()
 {
-	LogString s1("Illegal user", QUESTION);
-	s1 += "!!!";
+	top::LogString s1("bad request", top::OK);
+	s1.capitalize();
 	cout << s1 << endl;
 }
 
