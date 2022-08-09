@@ -13,8 +13,8 @@ using std::endl;
 
 int main()
 {
-	top::LogString s1("Amore Roma", top::OK);
-	s1.reverse();
+	top::LogString s1("the user is blocked by system", top::OK);
+	s1.capitalize_words(49);
 	cout << s1 << endl;
 }
 

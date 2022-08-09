@@ -23,6 +23,9 @@ namespace top
 		LogString(const string&, short);
 		friend std::ostream& operator << (std::ostream&, const LogString&);
 		void capitalize();
+		void capitalize(int x);
+		void capitalize_words();
+		void capitalize_words(int z);
 		void reverse();
 	};
 
@@ -58,10 +61,41 @@ namespace top
 
 	void LogString::capitalize()
 	{
-		char c = this->at(0);
+		capitalize(0);
+	}
+
+	void LogString::capitalize(int x)
+	{
+		char c = this->at(x);
 		short pos = find_symbol_no(c);
 		if (pos == -1) return;
-		this->at(0) = bigs[pos];
+		this->at(x) = bigs[pos];
+	}
+
+	void LogString::capitalize_words()
+	{
+		capitalize();
+		int n = this->size();
+		for (int i = 0; i < n - 2; i++)
+			if (this->at(i) == ' ') capitalize(i + 1);
+	}
+
+	// Z - фиктивный параметр, определяющий перегруженный
+	// вариант метода, использующий find
+	void LogString::capitalize_words(int z)
+	{
+		capitalize();
+		int pos;
+		int s = this->size();
+		int current=0;
+		while (true) {
+			pos = this->find(' ', current);
+			if (pos == -1) break;
+			if (pos == s - 1) break;
+			capitalize(pos + 1);
+			current = pos + 1;
+		}
+		putchar(7);
 	}
 
 	void LogString::swap_symbols(int idx1, int idx2)
