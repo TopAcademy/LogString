@@ -13,8 +13,8 @@ using std::endl;
 
 int main()
 {
-	top::LogString s1("bad request", top::OK);
-	s1.capitalize();
+	top::LogString s1("Amore Roma", top::OK);
+	s1.reverse();
 	cout << s1 << endl;
 }
 

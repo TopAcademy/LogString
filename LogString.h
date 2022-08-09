@@ -18,10 +18,12 @@ namespace top
 		short log_type;
 	protected:
 		short find_symbol_no(char c);
+		void swap_symbols(int idx1, int idx2);
 	public:
 		LogString(const string&, short);
 		friend std::ostream& operator << (std::ostream&, const LogString&);
 		void capitalize();
+		void reverse();
 	};
 
 	char LogString::symbols[4] = { '-', '+', '?', '@' };
@@ -62,5 +64,18 @@ namespace top
 		this->at(0) = bigs[pos];
 	}
 
+	void LogString::swap_symbols(int idx1, int idx2)
+	{
+		char c = this->at(idx1);
+		this->at(idx1) = this->at(idx2);
+		this->at(idx2) = c;
+	}
+
+	void LogString::reverse()
+	{
+		int n = size();
+		for (int i = 0; i < n / 2; i++) 
+			swap_symbols(i, n - i - 1);
+	}
 
 }
