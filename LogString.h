@@ -14,12 +14,15 @@ namespace top
 		static char symbols[4];
 		static char smalls[];
 		static char bigs[];
+	public:
+		static int counter;
 	private:
 		short log_type;
 	protected:
 		short find_symbol_no(char c);
 		void swap_symbols(int idx1, int idx2);
 	public:
+		LogString();
 		LogString(const string&, short);
 		friend std::ostream& operator << (std::ostream&, const LogString&);
 		void capitalize();
@@ -32,13 +35,21 @@ namespace top
 	char LogString::symbols[4] = { '-', '+', '?', '@' };
 	char LogString::smalls[] = "abcdefghijklmnopqrstuvwxyz";
 	char LogString::bigs[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	int LogString::counter = 0;
 
 	// Constructor 
+
+	LogString::LogString() : string()
+	{
+		counter++;
+		this->log_type = OK;
+	}
 
 	LogString::LogString(const string& _s, short _type)
 		: string(_s)
 	{
 		this->log_type = _type;
+		counter++;
 	}
 
 
@@ -57,7 +68,6 @@ namespace top
 			if (c == smalls[i]) return i;
 		return -1;
 	}
-
 
 	void LogString::capitalize()
 	{
@@ -95,7 +105,6 @@ namespace top
 			capitalize(pos + 1);
 			current = pos + 1;
 		}
-		putchar(7);
 	}
 
 	void LogString::swap_symbols(int idx1, int idx2)

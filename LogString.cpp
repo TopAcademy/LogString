@@ -5,6 +5,7 @@
 #include <string>
 #include <stdexcept>
 #include "LogString.h"
+#include "LogVector.h"
 
 using std::string;
 using std::cout;
@@ -13,8 +14,21 @@ using std::endl;
 
 int main()
 {
-	top::LogString s1("the user is blocked by system", top::OK);
-	s1.capitalize_words(49);
-	cout << s1 << endl;
+	top::LogVector s;
+	s.push_back(top::LogString("request denided", top::ERROR));
+	s.push_back(top::LogString("user not found", top::ERROR));
+	s.push_back(top::LogString("successful request", top::OK));
+	s.push_back(top::LogString("invalid user", top::QUESTION));
+	s.filter("user");
+	/* Результат:
+	[-] user not found
+	[?] invalid user
+	*/
+	s.filter("request");
+	/* Результат:
+	[-] request denided
+	[+] sucessful request
+	*/
+
 }
 
